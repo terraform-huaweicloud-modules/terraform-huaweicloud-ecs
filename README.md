@@ -63,11 +63,10 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 | period_unit | The period unit of the pre-paid purchase | string | null | N |
 | period | The period number of the pre-paid purchase | number | null | N |
 | is_auto_renew | Whether to automatically renew after expiration for ECS resources | bool | null | N |
-| name_suffix | The suffix string of name for all ECS resources | string | "" | N |
+| name_suffix | The suffix string of name for all ECS resources | string | null | N |
 | subnet_id | The ID of the VPC subnet to which the ECS instance belongs | string | null | N |
 | security_group_ids | The ID list of the security groups to which the ECS instance belongs | list(string) | [] | N |
 | availability_zone | The specified availability zone where the ECS instance is located | string | null | N |
-| availability_zones | The list of availability zones where the ECS resources are located | list(string) | [] | N |
 | is_instance_create | Controls whether a ECS instance should be created (it affects all ECS related resources under this module) | bool | true | N |
 | instance_count | The total number of the ECS instances | number | 0 | N |
 | instance_name | The name of the ECS instance | string | null | N |

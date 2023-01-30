@@ -39,7 +39,7 @@ variable "name_suffix" {
   description = "The suffix string of name for all ECS resources"
 
   type    = string
-  default = ""
+  default = null
 }
 
 ######################################################################
@@ -67,13 +67,6 @@ variable "availability_zone" {
   default = null
 }
 
-variable "availability_zones" {
-  description = "The list of availability zones where the ECS resources are located"
-
-  type    = list(string)
-  default = []
-}
-
 ######################################################################
 # Configuration of ECS instance and related resources
 ######################################################################
@@ -99,7 +92,7 @@ variable "instance_name" {
   default = null
 }
 
-variable "flavor_id" {
+variable "instance_flavor_id" {
   description = "The ID of the ECS instance flavor"
 
   type    = string
@@ -127,15 +120,15 @@ variable "instance_flavor_memory" {
   default = null
 }
 
-variable "image_id" {
-  description = "The ID of the IMS image that ECS instance used"
+variable "instance_image_id" {
+  description = "The ID of the IMS image used to create the ECS instance"
 
   type    = string
   default = null
 }
 
 variable "instance_image_name" {
-  description = "The name of the IMS image that ECS instance used"
+  description = "The name of the IMS image used to create the ECS instance"
 
   type    = string
   default = null

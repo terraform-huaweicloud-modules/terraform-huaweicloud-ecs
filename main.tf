@@ -1,14 +1,18 @@
-data "huaweicloud_compute_flavors" "this" {
-  count = var.is_instance_create ? (var.flavor_id == null ? 1 : 0) : 0
+data "huaweicloud_availability_zones" "this" {
+  count = var.availability_zone != null ? 0 : 1
+}
 
-  availability_zone = var.availability_zone != null ? var.availability_zone : var.availability_zones[0]
+data "huaweicloud_compute_flavors" "this" {
+  count = var.is_instance_create ? (var.instance_flavor_id == null ? 1 : 0) : 0
+
+  availability_zone = var.availability_zone == null ? try(data.huaweicloud_availability_zones.this[0].names[0], null) : var.availability_zone
   performance_type  = var.instance_flavor_performance
   cpu_core_count    = var.instance_flavor_cpu
   memory_size       = var.instance_flavor_memory
 }
 
 data "huaweicloud_images_image" "this" {
-  count = var.is_instance_create ? (var.image_id == null ? 1 : 0) : 0
+  count = var.is_instance_create ? (var.instance_image_id == null ? 1 : 0) : 0
 
   name        = var.instance_image_name
   most_recent = true
@@ -17,11 +21,11 @@ data "huaweicloud_images_image" "this" {
 resource "huaweicloud_compute_instance" "this" {
   count = var.is_instance_create ? (var.instance_count > 0 ? var.instance_count : 1) : 0
 
-  image_id          = var.image_id == null ? data.huaweicloud_images_image.this[0].id : var.image_id
-  flavor_id         = var.flavor_id == null ? data.huaweicloud_compute_flavors.this[0].ids[0] : var.flavor_id
-  availability_zone = var.availability_zone != null ? var.availability_zone : var.availability_zones[0]
+  availability_zone = var.availability_zone == null ? try(data.huaweicloud_availability_zones.this[0].names[0], null) : var.availability_zone
+  flavor_id         = var.instance_flavor_id != null ? var.instance_flavor_id : data.huaweicloud_compute_flavors.this[0].ids[0]
+  image_id          = var.instance_image_id != null ? var.instance_image_id : data.huaweicloud_images_image.this[0].id
 
-  name                        = var.name_suffix != "" ? format("%s-%s", var.instance_name, var.name_suffix) : var.instance_name
+  name                        = var.name_suffix != null ? format("%s-%s", var.instance_name, var.name_suffix) : var.instance_name
   security_group_ids          = var.security_group_ids
   system_disk_type            = var.system_disk_type
   system_disk_size            = var.system_disk_size
@@ -50,8 +54,8 @@ resource "huaweicloud_compute_instance" "this" {
     }
   }
 
-  key_pair   = var.keypair_name != null ? var.keypair_name : null
   admin_pass = var.keypair_name == null ? var.admin_password : null
+  key_pair   = var.keypair_name != null ? var.keypair_name : null
   user_data  = var.keypair_name != null ? var.user_data : null
 
   network {
@@ -68,6 +72,6 @@ resource "huaweicloud_compute_instance" "this" {
   auto_renew    = var.is_auto_renew
 
   tags = merge(
-    { "Name" = var.name_suffix != "" ? format("%s-%s", var.instance_name, var.name_suffix) : var.instance_name },
+    { "Name" = var.name_suffix != null ? format("%s-%s", var.instance_name, var.name_suffix) : var.instance_name },
   var.instance_tags)
 }
