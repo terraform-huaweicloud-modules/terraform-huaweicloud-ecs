@@ -252,11 +252,19 @@ variable "instance_tags" {
 }
 
 ######################################################################
-# DEW input parameters for ECS instance
+# DEW input and related parameters for ECS instance
 ######################################################################
 
 variable "keypair_name" {
   description = "The name of the key-pair for encryption and login ECS instance"
+
+  type    = string
+  default = null
+}
+
+// The user_id is required if charging_mode is prePaid and keypair_name is not empty
+variable "user_id" {
+  description = "The ID of the IAM user used to login ECS instance"
 
   type    = string
   default = null

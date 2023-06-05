@@ -56,6 +56,7 @@ resource "huaweicloud_compute_instance" "this" {
 
   admin_pass = var.keypair_name == null ? var.admin_password : null
   key_pair   = var.keypair_name != null ? var.keypair_name : null
+  user_id    = var.user_id != null ? var.user_id : null
   user_data  = var.keypair_name != null ? var.user_data : null
 
   network {
