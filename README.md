@@ -92,6 +92,7 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 | scheduler_hints_configuration | The scheduler with hints on how instance should be launched | <pre>list(object({<br>  type        = string<br>  size        = number<br>  snapshot_id = string<br>})</pre> | <pre>[<br>  {<br>    type = "SSD"<br>    size = 200<br>  }<br>]</pre> | N |
 | instance_tags | The key/value pairs of the ECS instance | map(string) | {} | N |
 | keypair_name | The name of the key-pair for encryption and login ECS instance | string | null | N |
+| user_id | The ID of the IAM user used to login ECS instance | string | null | N |
 
 ## Outputs
 
