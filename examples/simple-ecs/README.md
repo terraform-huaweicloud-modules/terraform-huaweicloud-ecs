@@ -32,7 +32,7 @@ Note that this example will create an instance and spend a few money. Run `terra
 
 | Name | Source | Version |
 |------|--------|---------|
-| [ecs](#module_ecs) | [../..](../../README.md) | N/A |
+| <a name="module_ecs"></a>[ecs](#module\_ecs) | [../..](../../README.md) | N/A |
 | vpc | [terraform-huaweicloud-vpc](https://github.com/terraform-huaweicloud-modules/terraform-huaweicloud-vpc) | N/A |
 
 ## Resources

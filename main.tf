@@ -18,6 +18,12 @@ data "huaweicloud_images_image" "this" {
   most_recent = true
 }
 
+data "huaweicloud_cbr_backup" "test" {
+  count = var.is_instance_create && var.is_whole_image_used ? 1 : 0
+
+  id = var.instance_image_id != null ? var.instance_image_id : data.huaweicloud_images_image.this[0].backup_id
+}
+
 resource "huaweicloud_compute_instance" "this" {
   count = var.is_instance_create ? (var.instance_count > 0 ? var.instance_count : 1) : 0
 
@@ -45,7 +51,7 @@ resource "huaweicloud_compute_instance" "this" {
   }
 
   dynamic "data_disks" {
-    for_each = var.data_disks_configuration
+    for_each = var.is_whole_image_used ? setunion(var.data_disks_configuration, [for v in flatten(data.huaweicloud_cbr_backup.test[0].children): tomap({"size"=v.resource_size, "snapshot_id"=v.id, "type"=var.restore_data_disk_type != null ? var.restore_data_disk_type : "SSD"}) if !v.extend_info[0].bootable]) : var.data_disks_configuration
 
     content {
       type        = data_disks.value["type"]

@@ -229,8 +229,22 @@ variable "access_network" {
   default = false
 }
 
+variable "is_whole_image_used" {
+  description = "Whether restore the disks from the whole image"
+
+  type    = bool
+  default = false
+}
+
+variable "restore_data_disk_type" {
+  description = "The type of data disks restored from the whole image"
+
+  type    = string
+  default = "SSD"
+}
+
 variable "data_disks_configuration" {
-  description = "The configuration of data volume of the ECS instance"
+  description = "The configuration of data disks of the ECS instance"
 
   type = list(object({
     type        = optional(string, "SSD")
