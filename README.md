@@ -4,6 +4,8 @@ The terraform module for one-click deployment of ECS instance.
 
 ## Usage
 
+### Create an ECS instance by public image
+
 ```hcl
 variable "subnet_id" {}
 variable "security_group_ids" {}
@@ -14,18 +16,47 @@ variable "system_disk_size" {}
 variable "admin_password" {}
 variable "data_disks_configuration" {}
 
-data "huaweicloud_availability_zones" "test" {}
+module "ecs_service" {
+  source = "terraform-huaweicloud-modules/terraform-huaweicloud-ecs"
+
+  subnet_id          = var.subnet_id
+  security_group_ids = var.security_group_ids
+
+  instance_name            = var.instance_name
+  instance_flavor_id       = var.flavor_id
+  instance_image_id        = var.image_id
+  system_disk_type         = var.system_disk_type
+  system_disk_size         = var.system_disk_size
+  admin_password           = var.admin_password
+  data_disks_configuration = var.data_disks_configuration
+}
+```
+
+### Create an ECS instance by the whole image
+
+```hcl
+variable "subnet_id" {}
+variable "security_group_ids" {}
+variable "instance_flavor_id" {}
+variable "is_whole_image_used" {
+  default = true
+}
+variable "instance_image_name" {}
+variable "system_disk_type" {}
+variable "system_disk_size" {}
+variable "admin_password" {}
+variable "data_disks_configuration" {}
 
 module "ecs_service" {
   source = "terraform-huaweicloud-modules/terraform-huaweicloud-ecs"
 
   subnet_id          = var.subnet_id
   security_group_ids = var.security_group_ids
-  availability_zone  = data.huaweicloud_availability_zones.test.names[0]
 
   instance_name            = var.instance_name
-  flavor_id                = var.flavor_id
-  image_id                 = var.image_id
+  instance_flavor_id       = var.instance_flavor_id
+  is_whole_image_used      = var.is_whole_image_used
+  instance_image_name      = var.instance_image_name
   system_disk_type         = var.system_disk_type
   system_disk_size         = var.system_disk_size
   admin_password           = var.admin_password
@@ -51,8 +82,10 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 
 | Name | Type |
 |------|------|
-| huaweicloud_compute_flavors.this | data-source |
-| huaweicloud_images_image.this | data-source |
+| data.huaweicloud_availability_zones.this | data-source |
+| data.huaweicloud_compute_flavors.this | data-source |
+| data.huaweicloud_images_image.this | data-source |
+| data.huaweicloud_cbr_backup.this | data-source |
 | huaweicloud_compute_instance.this | resource |
 
 ## Inputs
@@ -70,11 +103,11 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 | is_instance_create | Controls whether a ECS instance should be created (it affects all ECS related resources under this module) | bool | true | N |
 | instance_count | The total number of the ECS instances | number | 0 | N |
 | instance_name | The name of the ECS instance | string | null | N |
-| flavor_id | The ID of the ECS instance flavor | string | null | N |
+| instance_flavor_id | The ID of the ECS instance flavor | string | null | N |
 | instance_flavor_performance | The performance type of the ECS instance flavor | string | null | N |
 | instance_flavor_cpu | The CPU number of the ECS instance flavor | number | null | N |
 | instance_flavor_memory | The memory number of the ECS instance flavor | number | null | N |
-| image_id | The ID of the IMS image that ECS instance used | string | null | N |
+| instance_image_id | The ID of the IMS image that ECS instance used | string | null | N |
 | instance_image_name | The name of the IMS image that ECS instance used | string | null | N |
 | system_disk_type | The type of the system volume | string | "SSD" | N |
 | system_disk_size | The size of the system volume, in GB | number | 40 | N |
@@ -89,6 +122,9 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 | ipv6_enable | Whether to enable the IPv6 network | bool | false | N |
 | source_dest_check | Whether the ECS processes only traffic that is destined specifically for it | bool | false | N |
 | access_network | Whether network should be used for provisioning access | bool | false | N |
+| is_whole_image_used | Whether restore the disks from the whole image | bool | false | N |
+| restore_data_disk_type | The type of data disks restored from the whole image | string | "SSD" | N |
+| data_disks_configuration | The configuration of data disks of the ECS instance | list(object({<br>  type        = optional(string, "SSD")<br>  size        = optional(number, 100)<br>  snapshot_id = optional(string, null)<br>})) | [{<br>  type = "SSD"<br>  size = 200<br>}] | N |
 | scheduler_hints_configuration | The scheduler with hints on how instance should be launched | <pre>list(object({<br>  type        = string<br>  size        = number<br>  snapshot_id = string<br>})</pre> | <pre>[<br>  {<br>    type = "SSD"<br>    size = 200<br>  }<br>]</pre> | N |
 | instance_tags | The key/value pairs of the ECS instance | map(string) | {} | N |
 | keypair_name | The name of the key-pair for encryption and login ECS instance | string | null | N |
