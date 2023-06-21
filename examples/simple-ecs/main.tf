@@ -25,7 +25,7 @@ module "ecs_service" {
   source = "../.."
 
   subnet_id          = try(module.vpc_service.subnet_ids[0], "")
-  security_group_ids = module.vpc_service.security_group_id
+  security_group_ids = [module.vpc_service.security_group_id]
   availability_zone  = var.availability_zone
 
   instance_name               = var.instance_name
