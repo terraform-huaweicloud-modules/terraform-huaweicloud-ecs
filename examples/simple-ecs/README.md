@@ -68,3 +68,16 @@ Note that this example will create an instance and spend a few money. Run `terra
 | system_disk_size | The size of the system volume, in GB | number | 60 |
 | data_disks_configuration | The configuration of data volumes of the ECS instance | <pre>list(object({<br>  type = string<br>  size = number<br>}))</pre> | <pre>[{<br>  type = "SAS"<br>  size = 60<br>}]</pre> |
 | admin_password | The login password of the administrator | string | null |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| instance_ids | The ID list of the ECS instances |
+| instance_id | The ID of the first ECS instance |
+| instance_name | The name of the first ECS instance |
+| instance_status | The status of the first ECS instance |
+| instance_public_ip | The public IP of the first ECS instance |
+| instance_access_ipv4 | The fixed IPv4 address or the floating IP of the first ECS instance |
+| instance_access_ipv6 | The fixed IPv6 address of the first ECS instance |
+| instance_network | The network object of the first ECS instance |
