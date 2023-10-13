@@ -250,6 +250,9 @@ variable "data_disks_configuration" {
     type        = optional(string, "SSD")
     size        = optional(number, 100)
     snapshot_id = optional(string, null)
+    kms_key_id  = optional(string, null)
+    iops        = optional(string, null)
+    throughput  = optional(string, null)
   }))
 
   default = [{

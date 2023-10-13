@@ -29,7 +29,9 @@ system_disk_size = 100
 
 data_disks_configuration = [
   {
-    type = "SSD"
-    size = 200
+    type       = "GPSSD2"
+    size       = 200
+    iops       = 4000
+    throughput = 250
   }
 ]

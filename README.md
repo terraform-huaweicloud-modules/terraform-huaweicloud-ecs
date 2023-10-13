@@ -124,7 +124,7 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 | access_network | Whether network should be used for provisioning access | bool | false | N |
 | is_whole_image_used | Whether restore the disks from the whole image | bool | false | N |
 | restore_data_disk_type | The type of data disks restored from the whole image | string | "SSD" | N |
-| data_disks_configuration | The configuration of data disks of the ECS instance | list(object({<br>  type        = optional(string, "SSD")<br>  size        = optional(number, 100)<br>  snapshot_id = optional(string, null)<br>})) | [{<br>  type = "SSD"<br>  size = 200<br>}] | N |
+| data_disks_configuration | The configuration of data disks of the ECS instance | list(object({<br>  type        = optional(string, "SSD")<br>  size        = optional(number, 100)<br>  snapshot_id = optional(string, null)<br>  kms_key_id  = optional(string, null)<br>  iops        = optional(string, null)<br>  throughput  = optional(string, null)<br>})) | [{<br>  type = "SSD"<br>  size = 200<br>}] | N |
 | scheduler_hints_configuration | The scheduler with hints on how instance should be launched | <pre>list(object({<br>  type        = string<br>  size        = number<br>  snapshot_id = string<br>})</pre> | <pre>[<br>  {<br>    type = "SSD"<br>    size = 200<br>  }<br>]</pre> | N |
 | instance_tags | The key/value pairs of the ECS instance | map(string) | {} | N |
 | keypair_name | The name of the key-pair for encryption and login ECS instance | string | null | N |
