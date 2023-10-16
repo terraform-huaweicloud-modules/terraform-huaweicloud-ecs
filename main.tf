@@ -57,6 +57,9 @@ resource "huaweicloud_compute_instance" "this" {
       type        = data_disks.value["type"]
       size        = data_disks.value["size"]
       snapshot_id = data_disks.value["snapshot_id"]
+      kms_key_id  = data_disks.value["kms_key_id"]
+      iops        = data_disks.value["iops"]
+      throughput  = data_disks.value["throughput"]
     }
   }
 

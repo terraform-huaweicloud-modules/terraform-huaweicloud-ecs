@@ -116,13 +116,17 @@ variable "data_disks_configuration" {
   description = "The configuration of data volumes of the ECS instance"
 
   type = list(object({
-    type = string
-    size = number
+    type       = string
+    size       = number
+    iops       = string
+    throughput = string
   }))
 
   default = [{
-    type = "SAS"
-    size = 60
+    type       = "SAS"
+    size       = 60
+    iops       = 3000
+    throughput = 125
   }]
 }
 
