@@ -1,20 +1,7 @@
-output "instance_ids" {
-  description = "The ID list of the ECS instances"
-
-  value = huaweicloud_compute_instance.this[*].id
-}
-
-// If you only create one instance, you can refer to the following parameters.
 output "instance_id" {
   description = "The ID of the first ECS instance"
 
   value = try(huaweicloud_compute_instance.this[0].id, "")
-}
-
-output "instance_name" {
-  description = "The name of the first ECS instance"
-
-  value = try(huaweicloud_compute_instance.this[0].name, "")
 }
 
 output "instance_status" {
