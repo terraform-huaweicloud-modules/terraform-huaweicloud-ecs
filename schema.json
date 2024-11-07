@@ -1,0 +1,420 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "enterprise_project_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "availability_zone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_flavor_performance_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_flavor_cpu_core_count": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "instance_flavor_memory_size": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "instance_image_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_image_name_regex": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_image_is_whole": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "instance_image_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_image_os_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_image_architecture": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_image_visibility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "is_instance_create": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "instance_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_flavor_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_image_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_security_group_ids": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string"
+        ]
+      }
+    },
+    "instance_description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_hostname": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_agency_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_agent_list": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_metadata": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "instance_tags": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "instance_user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_admin_pass": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_user_data": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_key_pair": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_private_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "use_inside_data_disks_configuration": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "instance_disks_configuration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "is_system_disk": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "snapshot_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kms_key_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "iops": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "throughput": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "dss_pool_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "is_system_disk",
+          "type",
+          "size"
+        ]
+      }
+    },
+    "restore_data_disk_type": {
+      "type": "string"
+    },
+    "instance_networks_configuration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "fixed_ip_v4": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ipv6_enable": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "source_dest_check": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "access_network": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "uuid"
+        ]
+      }
+    },
+    "instance_eip_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_eip_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_bandwidth_configuration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "share_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "size": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "charge_mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "extend_param": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "instance_scheduler_hints_configuration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tenancy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "deh_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "instance_stop_before_destroy": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "instance_delete_disks_on_termination": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "instance_delete_eip_on_termination": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "instance_auto_terminate_time": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_charging_mode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_period_unit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_period": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_auto_renew": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_spot_duration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_spot_duration_count": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instance_power_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

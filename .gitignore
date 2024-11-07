@@ -1,1 +1,6 @@
 .terraform
+.log
+.auto.tfvars
+.hcl
+.tfstate
+.backup
