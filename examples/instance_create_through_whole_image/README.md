@@ -86,5 +86,5 @@ Note that this example will create an instance and spend a few money. Run `terra
 
 | Name | Description |
 |------|-------------|
-| instance_id | The ID of the first ECS instance |
-| instance_status | The status of the first ECS instance |
+| instance_id | The ID of the ECS instance |
+| instance_status | The status of the ECS instance |
