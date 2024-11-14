@@ -1,7 +1,11 @@
 output "instance_id" {
-    value = module.ecs_service.instance_id
+  description = "The ID of the ECS instance"
+
+  value = module.ecs_service.instance_id
 }
 
 output "instance_status" {
-    value = module.ecs_service.instance_status
+  description = "The status of the ECS instance"
+
+  value = module.ecs_service.instance_status
 }
