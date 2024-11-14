@@ -164,9 +164,9 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 
 | Name | Description |
 |------|-------------|
-| instance_id | The ID of the first ECS instance |
-| instance_status | The status of the first ECS instance |
-| instance_public_ip | The public IP of the first ECS instance |
-| instance_access_ipv4 | The fixed IPv4 address or the floating IP of the first ECS instance |
-| instance_access_ipv6 | The fixed IPv6 address of the first ECS instance |
-| instance_network | The network object of the first ECS instance |
+| instance_id | The ID of the ECS instance |
+| instance_status | The status of the ECS instance |
+| instance_public_ip | The public IP of the ECS instance |
+| instance_access_ipv4 | The fixed IPv4 address or the floating IP of the ECS instance |
+| instance_access_ipv6 | The fixed IPv6 address of the ECS instance |
+| instance_networks | The list of network configurations of the ECS instance |
