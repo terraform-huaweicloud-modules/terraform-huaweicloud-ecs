@@ -31,5 +31,5 @@ output "instance_access_ipv6" {
 output "instance_networks" {
   description = "The list of network configurations of the ECS instance"
 
-  value = try(huaweicloud_compute_instance.this[0].network, "")
+  value = try(huaweicloud_compute_instance.this[0].network, [])
 }
