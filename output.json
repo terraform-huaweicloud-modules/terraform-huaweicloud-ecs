@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "instance_id": {
+            "type": "string"
+        },
+        "instance_status": {
+            "type": "string"
+        },
+        "instance_public_ip": {
+            "type": "string"
+        },
+        "instance_access_ipv4": {
+            "type": "string"
+        },
+        "instance_access_ipv6": {
+            "type": "string"
+        },
+        "instance_network": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+}
