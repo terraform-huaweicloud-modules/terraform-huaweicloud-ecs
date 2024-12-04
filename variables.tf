@@ -222,7 +222,7 @@ variable "use_inside_data_disks_configuration" {
   description = "Whether to allow data disks to be created together with ECS instance"
 
   type     = bool
-  default  = false
+  default  = true
   nullable = false
 }
 

@@ -138,7 +138,7 @@ Full contributing [guidelines are covered here](.github/how_to_contribute.md).
 | instance_key_pair | The SSH keypair name used for logging in to the instance | string | "" | N |
 | instance_private_key | The the private key of the keypair in use | string | "" | N |
 | instance_key_pair | The SSH keypair name used for logging in to the instance | string | "" | N |
-| use_inside_data_disks_configuration | Whether to allow data disks to be created together with ECS instance | bool | false | N |
+| use_inside_data_disks_configuration | Whether to allow data disks to be created together with ECS instance | bool | true | N |
 | restore_data_disks_name_prefix | The name prefix of data disks restored from the whole image | string | "" (restored-volume-N by logic default) | N |
 | restore_data_disks_type | The type of data disks restored from the whole image | string | "" (SSD by logic default) | N |
 | data_disks_configuration | The configuration of data disks of the ECS instance | <pre>list(object({<br>  is_system_disk = bool<br>  name           = optional(string, "")<br>  type           = string<br>  size           = number<br>  snapshot_id    = optional(string, "")<br>  kms_key_id     = optional(string, "")<br>  iops           = optional(number, 0)<br>  throughput     = optional(number, 0)<br>  dss_pool_id    = optional(string, "")<br>}))</pre> | <pre>[<br>  {<br>    is_system_disk = true,<br>    type = "SSD",<br>    size = 200<br>  }<br>] | N |
